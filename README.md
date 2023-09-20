@@ -41,6 +41,13 @@ existing project or creating a new one.
 - [JDK Commercial Installation](https://www.oracle.com/java/technologies/downloads/#jdk20-windows)
 - [JDK Open Source](https://jdk.java.net/)
 - [IntelliJ Download](https://www.jetbrains.com/idea/download/?section=windows)
+- [W3 Schools on Kotlin Functions](https://www.w3schools.com/kotlin/kotlin_functions.php)
+- [Kotlin official docs on Kotlin Functions](https://kotlinlang.org/docs/functions.html)
+- [Programiz on Kotlin Functions](https://www.programiz.com/kotlin-programming/functions)
+- [Geeks for Geeks on Kotlin Functions](https://www.geeksforgeeks.org/kotlin-functions/)
+- [Kotlin Official Docs coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
+- [Android.com Kotlin Style guide](https://developer.android.com/kotlin/style-guide)
+- [EnjoyTutorials on Kotlin global variables](https://www.enjoytutorials.com/kotlin-local-and-global-variables-tutorial/) 
 - [Web Site Name](http://url.link.goes.here)
 
 # Future Work
