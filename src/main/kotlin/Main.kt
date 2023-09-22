@@ -15,4 +15,27 @@ fun menu(){
     print("Enter the number of the option you wish to perform: ")
     userInput = readln()
 
+    when (userInput){
+        "1" -> addTask()
+        "2" -> deleteTask()
+        "3" -> listTask()
+        "4" -> println("Come back soon!")
+        else  -> println("Please choose a valid option.")
+    }
+
+    if (userInput != "4"){
+        menu()
+    }
+}
+
+fun addTask(){
+    println("Add task called")
+}
+
+fun deleteTask(){
+    println("Delete task called")
+}
+
+fun listTask(){
+    println("List Task Called")
 }
