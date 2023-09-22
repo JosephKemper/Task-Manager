@@ -1,8 +1,18 @@
+val taskList = mutableListOf<String>()
+lateinit var userInput: String
 fun main() {
-    println("Hello World! I'm playing with Intellij")
-    println("Hello World! Testing github interaction in Intellij")
+    menu()
+}
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    //println("Program arguments: ${args.joinToString()}")
+fun menu(){
+    println("Welcome to our task manager program!")
+    println("What can we help you with today?")
+    println("1. Add Task")
+    println("2. Delete Task")
+    println("3. List Task")
+    println("4. Exit Program")
+    println()
+    print("Enter the number of the option you wish to perform: ")
+    userInput = readln()
+
 }
