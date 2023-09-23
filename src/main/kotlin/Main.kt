@@ -40,10 +40,18 @@ fun addTask(){
 fun deleteTask(){
     print("Which task number did you want to delete? ")
     userInput = readln()
-    val convertToIndex = userInput.toInt()-1
-    val removedTask = taskList[convertToIndex]
-    println("Okay we'll remove $removedTask from your task list.")
-    taskList.removeAt(convertToIndex)
+    val checkInput =userInput.toIntOrNull()
+    if (checkInput != null && checkInput >= 1 && checkInput <= taskList.size){
+        val taskIndex = checkInput -1
+        val removedTask = taskList[taskIndex]
+        println("Okay we'll remove $removedTask from your task list.")
+        taskList.removeAt(taskIndex)
+    } else {
+        println("We're sorry, that was not a valid selection.")
+        print("Please try again entering the number of the task you want to remove")
+        deleteTask()
+    }
+
 
 }
 
