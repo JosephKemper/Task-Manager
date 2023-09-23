@@ -1,3 +1,6 @@
+import java.io.File
+import java.io.IOException
+
 val taskList = mutableListOf<String>()
 lateinit var userInput: String
 fun main() {
@@ -11,7 +14,9 @@ fun menu(){
     println("1. Add Task")
     println("2. Delete Task")
     println("3. List Task")
-    println("4. Exit Program")
+    println("4. Save Tasks to File")
+    println("5. Load from File")
+    println("5. Exit Program")
     println()
     print("Enter the number of the option you wish to perform: ")
     userInput = readln()
@@ -20,11 +25,13 @@ fun menu(){
         "1" -> addTask()
         "2" -> deleteTask()
         "3" -> listTask()
-        "4" -> println("Come back soon!")
+        "4" -> saveTasks()
+        "5" -> loadTasks()
+        "6" -> println("Come back soon!")
         else  -> println("Please choose a valid option.")
     }
 
-    if (userInput != "4"){
+    if (userInput != "6"){
         menu()
     }
 }
@@ -62,5 +69,15 @@ fun listTask(){
         println("$taskNumber . $task")
         taskNumber +=1
     }
+}
+
+fun saveTasks(){
+    print("What is the name of the file you want to save your tasks to? ")
+    userInput = readln()
+}
+
+fun loadTasks(){
+    println("What is the name of the file you want to load your tasks from? ")
+    userInput = readln()
 
 }
