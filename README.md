@@ -48,6 +48,10 @@ existing project or creating a new one.
 - [Kotlin Official Docs coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
 - [Android.com Kotlin Style guide](https://developer.android.com/kotlin/style-guide)
 - [EnjoyTutorials on Kotlin global variables](https://www.enjoytutorials.com/kotlin-local-and-global-variables-tutorial/) 
+- [Baeldung Writing to Files in Kotlin](https://www.baeldung.com/kotlin/write-file)
+- [Baeldung Reading from a File in Kotlin](https://www.baeldung.com/kotlin/read-file)
+- [Tutorial Kart Kotlin File Operations](https://www.tutorialkart.com/kotlin/kotlin-file-operations/#gsc.tab=0)
+- [Android Developers Kotlin File Operations](https://developer.android.com/reference/kotlin/java/io/File)
 - [Web Site Name](http://url.link.goes.here)
 
 # Future Work
