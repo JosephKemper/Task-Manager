@@ -1,11 +1,19 @@
-// Import Libraries to allow file management for saving and loading files
+// Import Libraries to allow file management for saving and loading files along with using dates
 import java.io.File
 import java.io.IOException
+import java.util.Date
 
 //  Global variables for use later
-val taskList = mutableListOf<String>() // Store list of tasks
+val taskList = mutableListOf<MutableList<TaskData>>() // Store list of tasks
 lateinit var userInput: String // Get input from user
 
+// Define task data type
+data class TaskData (
+    val title: String,
+    val description: String,
+    val startDate: Date,
+    val dueDate: Date
+)
 
 fun main() {
     // Program introduction
@@ -48,11 +56,25 @@ fun menu(){
 
 // Handles the adding of tasks input from the user through menu option 1
 fun addTask(){
+    // BUG implement new addTask function
+    // Create new instance of task class
+    // Define variables
+    // Ask for title of task
+    // Ask for description
+    // Collect start date from system
+    // Get target end date from user
+    // Add variables to local list
+    // Add local list to taskList
+
+    /*
+    old structure
     println() // Space for aesthetic purposes
     print("What task did you want to add? ")
     userInput = readln() // Get task from user
     taskList.add(userInput) // Add task to list
+    val newTask = TaskData()
     println("Okay we added $userInput to your task list.") // Confirm the task has been successfully added
+     */
 }
 
 // Handles the removal of tasks from the list through menu option 2
@@ -82,14 +104,23 @@ fun listTasks(){
     println("Here are your current tasks:")
     // Iterates through taskList
     for (task in taskList){
-        // Prints the current task number and the current task to the screen
+        /*
+        BUG update the functionality to iterate through taskList
+        Collect title from task
+        Collect description from task
+        Collect creation date from task
+        Collect due date from task
+        Calculate how many days active
+        Calculate how many days until it is due
+        Prints the current task number and the current task to the screen
+        */
         println("$taskNumber . $task")
         taskNumber +=1 // Keeps track of current task number
     }
 }
 
 // Handles the saving of tasks to a file through menu option 4
-fun saveTasks(){
+fun saveTasks(){ /* BUG make sure saveTasks saves properly */
     print("What is the name of the file you want to save your tasks to? ")
     userInput = readln() // Gets the name of the file from the user
     // Error Checking for loading
@@ -111,14 +142,14 @@ fun loadNewTasks (){
 }
 
 // Handles the loading of additional tasks from a file menu option 6
-fun loadTasks(){
+fun loadTasks(){ /* BUG make sure loadTasks loads correctly */
     print("What is the name of the file you want to load your tasks from? ")
     userInput = readln() // Gets the name of the file from the user
     // Error checking for loading
     try {
         taskList.clear() // Empties the taskList of any existing tasks
         // Reads the lines of the file using the file name provided by the user into the taskList
-        taskList.addAll(File(userInput).readLines())
+        //taskList.addAll(File(userInput).readLines())
         println("Tasks Loaded Successfully: $taskList") // Confirms the tasks were successfully loaded
     } catch (e: IOException){ // Catches any errors in the loading process
         println("Sorry we were unable to load your tasks. Please try again.")

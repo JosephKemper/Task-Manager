@@ -52,6 +52,10 @@ existing project or creating a new one.
 - [Baeldung Reading from a File in Kotlin](https://www.baeldung.com/kotlin/read-file)
 - [Tutorial Kart Kotlin File Operations](https://www.tutorialkart.com/kotlin/kotlin-file-operations/#gsc.tab=0)
 - [Android Developers Kotlin File Operations](https://developer.android.com/reference/kotlin/java/io/File)
+- [Kotlin Classes on Official Site](https://kotlinlang.org/docs/classes.html)
+- [Kotlin Classes on W3 Schools](https://www.w3schools.com/kotlin/kotlin_classes.php)
+- [Programiz on Classes and Objects](https://www.programiz.com/kotlin-programming/class-objects)
+- [Kotlin - Class and Objects](https://www.tutorialspoint.com/kotlin/kotlin_class_and_object.htm)
 - [Web Site Name](http://url.link.goes.here)
 
 # Future Work
