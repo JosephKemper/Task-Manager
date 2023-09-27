@@ -1,10 +1,15 @@
 // Import Libraries to allow file management for saving and loading files along with using dates
 import java.io.File
 import java.io.IOException
+import java.time.LocalDate
 import java.util.Date
+import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.util.Locale
+import java.time.temporal.ChronoUnit
 
 //  Global variables for use later
-val taskList = mutableListOf<MutableList<TaskData>>() // Store list of tasks
+val taskList = mutableListOf<TaskData>()// Store list of tasks
 lateinit var userInput: String // Get input from user
 
 // Define task data type
@@ -56,25 +61,29 @@ fun menu(){
 
 // Handles the adding of tasks input from the user through menu option 1
 fun addTask(){
-    // BUG implement new addTask function
-    // Create new instance of task class
-    // Define variables
-    // Ask for title of task
-    // Ask for description
-    // Collect start date from system
-    // Get target end date from user
-    // Add variables to local list
-    // Add local list to taskList
+    println("To create a task, we will collect a short title, a description of what you are doing, and the date you want it completed by.")
 
-    /*
-    old structure
-    println() // Space for aesthetic purposes
-    print("What task did you want to add? ")
-    userInput = readln() // Get task from user
-    taskList.add(userInput) // Add task to list
-    val newTask = TaskData()
-    println("Okay we added $userInput to your task list.") // Confirm the task has been successfully added
-     */
+    // Ask for title of task
+    print("Please enter the title of your task: ")
+    val taskTitle = readln()
+
+    // Ask for description
+    print("Please enter a description of what you are trying to achieve: ")
+    val taskDescription = readln()
+
+    // Collect start date from system
+    val currentDate = Date()
+
+    // Get target end date from user
+    print("Please enter the target completion date for this task formatted as dd MMM yyyy (ex: 25 Jan 2024): ")
+    val dateInput = readln()
+    val format = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH)
+    val taskDueDate = format.parse(dateInput)
+
+    // Create new instance of task class
+    val newTask = TaskData(taskTitle, taskDescription, currentDate, taskDueDate)
+    // Add new task to taskList
+    taskList.add(newTask)
 }
 
 // Handles the removal of tasks from the list through menu option 2
@@ -104,17 +113,15 @@ fun listTasks(){
     println("Here are your current tasks:")
     // Iterates through taskList
     for (task in taskList){
-        /*
-        BUG update the functionality to iterate through taskList
-        Collect title from task
-        Collect description from task
-        Collect creation date from task
-        Collect due date from task
-        Calculate how many days active
-        Calculate how many days until it is due
-        Prints the current task number and the current task to the screen
-        */
-        println("$taskNumber . $task")
+        println("Task $taskNumber")
+        println("Title: ${task.title}")
+        println("Description: ${task.description}")
+        println("Start Date: ${task.startDate}")
+        println("Due Date: ${task.dueDate}")
+        val currentDate = LocalDate.now()
+        val dueDate = task.dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        val daysRemaining = ChronoUnit.DAYS.between(currentDate, dueDate)
+        println("Days Remaining Until Task is Due: $daysRemaining")
         taskNumber +=1 // Keeps track of current task number
     }
 }
