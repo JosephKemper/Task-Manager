@@ -1,5 +1,4 @@
 // Import Libraries to allow file management for saving and loading files along with using dates
-import java.io.File
 import java.io.IOException
 import java.time.LocalDate
 import java.util.Date
@@ -7,6 +6,12 @@ import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.util.Locale
 import java.time.temporal.ChronoUnit
+import java.io.FileOutputStream
+import java.io.ObjectOutputStream
+import java.io.FileInputStream
+import java.io.ObjectInputStream
+import java.io.Serializable
+
 
 //  Global variables for use later
 val taskList = mutableListOf<TaskData>()// Store list of tasks
@@ -18,7 +23,7 @@ data class TaskData (
     val description: String,
     val startDate: Date,
     val dueDate: Date
-)
+) : Serializable
 
 fun main() {
     // Program introduction
@@ -34,8 +39,8 @@ fun menu(){
     println("2. Delete Task")
     println("3. List Task")
     println("4. Save Tasks to File")
-    println("5. Load New Tasks (Note: This will overwrite any current tasks you have not saved)")
-    println("6. Load Additional Tasks (Note: This will add the tasks being loaded to your current task list")
+    println("5. Load New Tasks and Overwrite any Unsaved Tasks")
+    println("6. Load Additional Tasks to Existing List")
     println("7. Exit Program")
     println()
     print("Enter the number of the option you wish to perform: ")
@@ -47,8 +52,8 @@ fun menu(){
         "2" -> deleteTask()
         "3" -> listTasks()
         "4" -> saveTasks()
-        "5" -> loadNewTasks()
-        "6" -> loadTasks()
+        "5" -> loadTasks()
+        "6" -> loadAdditionalTasks()
         "7" -> println("Come back soon!")
         else  -> println("Please choose a valid option.")
     }
@@ -128,13 +133,19 @@ fun listTasks(){
 
 // Handles the saving of tasks to a file through menu option 4
 fun saveTasks(){ /* BUG make sure saveTasks saves properly */
-    print("What is the name of the file you want to save your tasks to? ")
+    print("What is the name of the file you want to save your tasks to (Please do not enter the file extension)? ")
     userInput = readln() // Gets the name of the file from the user
-    // Error Checking for loading
+
+    // Error Checking for saving the file
     try {
-        // Saves the provided tasks separated by a newline character to a file using the name provided by the user
-        File(userInput).writeText(taskList.joinToString("\n"))
-        println("Tasks have been saved to $userInput") // Confirms where the tasks were saved
+        // Save task list to file
+        val saveFile = FileOutputStream("$userInput.ser")
+        val saveObject = ObjectOutputStream (saveFile)
+        saveObject.writeObject(taskList)
+        saveObject.close()
+        saveFile.close()
+
+        println("Tasks have been saved to $userInput.ser") // Confirms where the tasks were saved
     } catch (e: IOException) { // Catches any errors in the saving process
         println("Sorry, we could not save your tasks. Please try again.")
         e.printStackTrace()
@@ -142,22 +153,26 @@ fun saveTasks(){ /* BUG make sure saveTasks saves properly */
     }
 }
 
-// Handles the loading of a new list of tasks through menu option 5
-fun loadNewTasks (){
-    taskList.clear() // Empties the taskList of any existing tasks
-    listTasks()
+fun loadTasks(){
+    taskList.clear()
+    loadAdditionalTasks()
 }
 
-// Handles the loading of additional tasks from a file menu option 6
-fun loadTasks(){ /* BUG make sure loadTasks loads correctly */
-    print("What is the name of the file you want to load your tasks from? ")
+// Handles the loading of additional tasks from a file menu option 5
+fun loadAdditionalTasks() { /* BUG make sure loadTasks loads correctly */
+    print("What is the name of the file you want to load your tasks from (excluding the file extension)? ")
     userInput = readln() // Gets the name of the file from the user
     // Error checking for loading
     try {
-        taskList.clear() // Empties the taskList of any existing tasks
-        // Reads the lines of the file using the file name provided by the user into the taskList
-        //taskList.addAll(File(userInput).readLines())
-        println("Tasks Loaded Successfully: $taskList") // Confirms the tasks were successfully loaded
+        val getFile = FileInputStream("$userInput.ser")
+        val getObject = ObjectInputStream(getFile)
+        val loadedTasksList = getObject.readObject() as MutableList<TaskData>
+        getObject.close()
+        getFile.close()
+
+        taskList.addAll(loadedTasksList) // add Loaded tasks to task list
+
+        println("Tasks Loaded Successfully from $userInput.ser") // Confirms the tasks were successfully loaded
     } catch (e: IOException){ // Catches any errors in the loading process
         println("Sorry we were unable to load your tasks. Please try again.")
         e.printStackTrace()
