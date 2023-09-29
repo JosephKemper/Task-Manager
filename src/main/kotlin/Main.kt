@@ -127,6 +127,7 @@ fun listTasks(){
         val dueDate = task.dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         val daysRemaining = ChronoUnit.DAYS.between(currentDate, dueDate)
         println("Days Remaining Until Task is Due: $daysRemaining")
+        println()
         taskNumber +=1 // Keeps track of current task number
     }
 }
