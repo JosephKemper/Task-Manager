@@ -17,7 +17,7 @@ add the most value to my portfolio and expand on that project first. After I hav
 six of my portfolio projects, I will take turns in future sprints either expanding on an 
 existing project or creating a new one.   
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/9IO4r2GtAR8)
 
 # Development Environment
 
