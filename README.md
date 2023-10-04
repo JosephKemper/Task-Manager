@@ -5,17 +5,33 @@ pressure while still producing viable product that meet my goals, plan and organ
 learn new programming languages, learn new tools, and use those same tools and programming
 languages to create a usable program.
 
-The minimum viable product for this program that I will be finishing on or before 30 September 
-2023 will be a console based Kotlin task manager program that will let users create tasks, list 
-them for easy reference, and delete any completed tasks.  
+This program runs through the terminal window. To use the menu, you will simply enter the number 
+of the menu item you wish to select and press the enter key. For example if you wanted to add a 
+task, you would enter "1" (without the quotes) into the terminal window and press the enter key. 
+From there, you would enter the title of the task in question, the description of what you are 
+trying to accomplish, and then the date by which you want to achieve it. 
 
-If I get this completed before 30 September 2023, instead of adding extra features to the 
-program right now, I will go ahead and work on the next program I will be adding to my portfolio.
-If after I complete the sixth portfolio project, I have more time before 13 December 2023 (when 
-I plan to have all six projects finished, I will then see what project I can add to that will 
-add the most value to my portfolio and expand on that project first. After I have completed all 
-six of my portfolio projects, I will take turns in future sprints either expanding on an 
-existing project or creating a new one.   
+To delete a task, you need to first know which number the task is, and thus will want to list 
+current tasks first. Once you select the list menu item, it will automatically list all tasks 
+that have been previously entered and will add a number next to each task that you can use to 
+interact with that task through. From there, if you want to delete a task, you would simply 
+enter the task number of the task you wish to delete. For example, if you have 10 tasks listed, 
+and wanted to delete the third task listed, which would have a "Task 3" reference at the top of 
+the task listing, you would simply need to enter "3" after going into the delete menu item 
+dialog portion of the program. 
+
+To save your tasks to a file, after entering the save dialog through entering the correct menu 
+item number, you would enter the name you wish to save your file as. Do not enter the file 
+extension, the program will enter that for you. For example if you wanted your save file to be 
+named "MyTasks" then that is all you would enter. The program will automatically enter the file 
+extension for you (".ser"). At this time, the .ser file extension is the only supported file type. 
+
+To load a previously saved file, you have two options. Menu item 5, will clear out all tasks 
+currently entered into the program, and load any saved in the file. Menu item 6, will load any 
+tasks saved to the selected file and add them to any previously entered tasks. For either option,
+just like with the save option, you would just enter the name of the file as you entered it when 
+you saved the file, in our previous example, "MyTasks" and then hit enter, and the program will 
+load your saved tasks up for you to review and work with. 
 
 [Software Demo Video](https://youtu.be/9IO4r2GtAR8)
 
@@ -62,19 +78,19 @@ existing project or creating a new one.
 
 ## Minimum Viable Product
 
-- Add Main Menu to interact with program through
-- Add Functionality to exit the program
-- Add functionality to add tasks
-- Add functionality to remove tasks
-- Add functionality to list tasks
+- ~~Add Main Menu to interact with program through~~
+- ~~Add Functionality to exit the program~~
+- ~~Add functionality to add tasks~~
+- ~~Add functionality to remove tasks~~
+- ~~Add functionality to list tasks~~
 
 ## Extras
 
-- Task Title
-- Task Description
-- Task Due date
-- Task Creation date
-- Time Remaining till due
+- ~~Task Title~~
+- ~~Task Description~~
+- ~~Task Due date~~
+- ~~Task Creation date~~
+- ~~Time Remaining till due~~
 - Next due task menu option
 - Category
 - List by category
