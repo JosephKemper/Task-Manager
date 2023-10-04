@@ -70,20 +70,20 @@ fun addTask(){
 
     // Ask for title of task
     print("Please enter the title of your task: ")
-    val taskTitle = readln()
+    val taskTitle = readln() // store title
 
     // Ask for description
     print("Please enter a description of what you are trying to achieve: ")
-    val taskDescription = readln()
+    val taskDescription = readln() // store description
 
     // Collect start date from system
     val currentDate = Date()
 
     // Get target end date from user
     print("Please enter the target completion date for this task formatted as dd MMM yyyy (ex: 25 Jan 2024): ")
-    val dateInput = readln()
-    val format = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH)
-    val taskDueDate = format.parse(dateInput)
+    val dateInput = readln() // Store date
+    val format = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH) // Create format for date
+    val taskDueDate = format.parse(dateInput) // Format date
 
     // Create new instance of task class
     val newTask = TaskData(taskTitle, taskDescription, currentDate, taskDueDate)
@@ -118,65 +118,66 @@ fun listTasks(){
     println("Here are your current tasks:")
     // Iterates through taskList
     for (task in taskList){
-        println("Task $taskNumber")
-        println("Title: ${task.title}")
-        println("Description: ${task.description}")
-        println("Start Date: ${task.startDate}")
-        println("Due Date: ${task.dueDate}")
-        val currentDate = LocalDate.now()
+        print("Task $taskNumber. ") // List task number for selection purposes
+        println("Title: ${task.title}") // List task title
+        println("Description: ${task.description}") // List task description
+        println("Start Date: ${task.startDate}") // List task start date
+        println("Due Date: ${task.dueDate}") // List task due date
+        val currentDate = LocalDate.now() // Get current date
+        // Prep due date for calculating the due date
         val dueDate = task.dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        val daysRemaining = ChronoUnit.DAYS.between(currentDate, dueDate)
-        println("Days Remaining Until Task is Due: $daysRemaining")
-        println()
+        val daysRemaining = ChronoUnit.DAYS.between(currentDate, dueDate) // calculate days remaining till due
+        println("Days Remaining Until Task is Due: $daysRemaining") // print days remaining
+        println() // Space for aesthetic purpose
         taskNumber +=1 // Keeps track of current task number
     }
 }
 
 // Handles the saving of tasks to a file through menu option 4
-fun saveTasks(){ /* BUG make sure saveTasks saves properly */
+fun saveTasks(){
     print("What is the name of the file you want to save your tasks to (Please do not enter the file extension)? ")
     userInput = readln() // Gets the name of the file from the user
 
     // Error Checking for saving the file
     try {
         // Save task list to file
-        val saveFile = FileOutputStream("$userInput.ser")
-        val saveObject = ObjectOutputStream (saveFile)
-        saveObject.writeObject(taskList)
-        saveObject.close()
-        saveFile.close()
+        val saveFile = FileOutputStream("$userInput.ser") // Preps file for being saved to
+        val saveObject = ObjectOutputStream (saveFile) // Preps data to be saved in file
+        saveObject.writeObject(taskList) // writes data in task list to file
+        saveObject.close() // closes data stream
+        saveFile.close() // closes file
 
         println("Tasks have been saved to $userInput.ser") // Confirms where the tasks were saved
     } catch (e: IOException) { // Catches any errors in the saving process
         println("Sorry, we could not save your tasks. Please try again.")
-        e.printStackTrace()
+        e.printStackTrace() // Displays exception to user
         menu() // Return to menu if saving fails
     }
 }
 
 fun loadTasks(){
-    taskList.clear()
-    loadAdditionalTasks()
+    taskList.clear() // Empties task list
+    loadAdditionalTasks() // Call loadAdditionalTasks() function
 }
 
 // Handles the loading of additional tasks from a file menu option 5
-fun loadAdditionalTasks() { /* BUG make sure loadTasks loads correctly */
+fun loadAdditionalTasks() {
     print("What is the name of the file you want to load your tasks from (excluding the file extension)? ")
     userInput = readln() // Gets the name of the file from the user
     // Error checking for loading
     try {
-        val getFile = FileInputStream("$userInput.ser")
-        val getObject = ObjectInputStream(getFile)
-        val loadedTasksList = getObject.readObject() as MutableList<TaskData>
-        getObject.close()
-        getFile.close()
+        val getFile = FileInputStream("$userInput.ser") // Preps file for being loaded from
+        val getObject = ObjectInputStream(getFile) // Preps data to be loaded
+        val loadedTasksList = getObject.readObject() as MutableList<TaskData> // Loads data into mutable list
+        getObject.close() // closes data stream
+        getFile.close() // closes file
 
         taskList.addAll(loadedTasksList) // add Loaded tasks to task list
 
         println("Tasks Loaded Successfully from $userInput.ser") // Confirms the tasks were successfully loaded
     } catch (e: IOException){ // Catches any errors in the loading process
         println("Sorry we were unable to load your tasks. Please try again.")
-        e.printStackTrace()
+        e.printStackTrace() // Displays exception to user
         menu() // Return to menu if loading fails
     }
 }
